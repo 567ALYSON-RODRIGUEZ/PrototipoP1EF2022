@@ -199,6 +199,16 @@ void ClsClientes::mnuevoCliente(fstream &archivoClientes)
    }
 }
 
+void ClsClientes::mostrarLineaClientes( const ClsClientes &registro )
+{
+       cout << left << setw( 10 ) << registro.mobtenerClaveC()
+          << setw( 10 ) << registro.mobtenerNombreC().data()
+          << setw( 10 ) << registro.mobtenerApellidoC().data()
+          << setw( 10 ) << registro.mobtenerReservaC().data()
+          << setw( 20 ) << registro.mobtenerCompraC().data()
+          << setw( 20 ) << registro.mobtenerCorreoC().data()
+          << endl;
+}
 
 
 ClsClientes::~ClsClientes()
