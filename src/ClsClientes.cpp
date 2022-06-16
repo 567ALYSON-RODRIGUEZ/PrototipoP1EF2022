@@ -376,6 +376,33 @@ void ClsClientes::meliminarRegistroClientes(fstream &archivoClientes)
    }
 }
 
+void ClsClientes::mbuscarClientes(fstream &archivoClientes)
+{
+    int iindicador = mobtenerIndicadorC( "Escriba la clave del cliente que desea actualizar" );
+
+   // desplazar el apuntador de posición de archivo hasta el registro correcto en el archivo
+   archivoClientes.seekg(
+      ( iindicador - 1 ) * sizeof( ClsClientes ) );
+
+   // leer el primer registro del archivo
+   ClsClientes clientes;
+   archivoClientes.read( reinterpret_cast< char * >( &clientes),
+      sizeof( ClsClientes ) );
+
+   // actualizar el registro
+   if ( clientes.mobtenerClaveC() != 0 ) {
+      mmostrarLineaRegistroClientes( cout, clientes);
+   }
+
+   // mostrar error si la cuenta no existe
+   else
+   {
+       cerr << "La clave #" << iindicador
+         << " no tiene informacion." << endl;
+   }
+   getch();
+}
+
 ClsClientes::~ClsClientes()
 {
     //dtor
