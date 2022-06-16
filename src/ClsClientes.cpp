@@ -117,6 +117,39 @@ void ClsClientes::mestablecerCorreoC( string scadenaCorreoC )
    m_sCorreoCliente[ ilongitud ] = '\0';
 }
 
+//Metodos del CRUD de clientes
+ClsClientes::mcrearClientes()
+{
+    ofstream archivoClientes("registrosclientes.dat", ios::out | ios::binary);
+    if(!archivoClientes)
+    {
+        cerr<<"No se pudo abrir el archivo"<<endl;
+        exit(1);
+    }
+    ClsClientes clienteEnBlanco;
+    for(int i=0; i<100; i++)
+    {
+        archivoClientes.write(reinterpret_cast<const char * > (&clinteEnBlanco), sizeof(ClsClientes));
+    }
+}
+
+int ClsClientes::mobtenerIndicadorC(const char * const iindicador)
+{
+    int m_iclaveCliente;
+
+   // obtener el valor del número de cliente
+   do {
+      cout << iindicador << " (1 - 100): ";
+      cin >> m_iclaveCliente;
+
+   } while ( m_iclaveCliente < 1 || m_iclaveCliente > 100 );
+
+   return m_iclaveCliente;
+}
+
+
+
+
 ClsClientes::~ClsClientes()
 {
     //dtor
