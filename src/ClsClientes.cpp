@@ -403,6 +403,90 @@ void ClsClientes::mbuscarClientes(fstream &archivoClientes)
    getch();
 }
 
+ClsClientes::mmenuClientes()
+{
+    int iseleccionMenuClientes;
+    do
+    {
+        system("cls");
+        // abrir el archivo en modo de lectura y escritura
+        fstream archivoClientes("registrosclientes.dat", ios::in | ios::out | ios::binary);
+        // salir del programa si fstream no puede abrir el archivo
+        if ( !archivoClientes)
+            {
+                cerr << "No se pudo abrir el archivo." << endl;
+                mcrearClientes();
+                cout <<  "Archivo creado satisfactoriamente, pruebe de nuevo";
+                exit ( 1 );
+
+            }
+        cout<<"-------------------------------"<<endl;
+        cout<<"|   SISTEMA GESTION CLIENTES  |"<<endl;
+        cout<<"-------------------------------"<<endl;
+        cout<<"1. Ingreso Cliente"<<endl;
+        cout<<"2. Despliegue Cliente"<<endl;
+        cout<<"3. Modifica Cliente"<<endl;
+        cout<<"4. Imprimir Regisro de Cliente"<<endl;
+        cout<<"5. Borra Cliente"<<endl;
+        cout<<"6. Buscar Cliente"<<endl;
+        cout<<"0. Volver al menu superior"<<endl;
+        cout<<"-------------------------------"<<endl;
+        cout<<"Opcion a escoger:[1/2/3/4/5/6/0]"<<endl;
+        cout<<"------------------------------"<<endl;
+        cout<<"Ingresa tu Opcion: ";
+        cin>>iseleccionMenuClientes;
+        switch(iseleccionMenuClientes)
+        {
+        case 1:
+            {
+                system("cls");
+                mnuevoCliente(archivoClientes);
+                getch();
+            }
+            break;
+        case 2:
+            {
+                system("cls");
+                mconsultarRegistroClientes(archivoClientes);
+                cout << "Fin del archivo.";
+                getch();
+            }
+            break;
+        case 3:
+            {
+                system("cls");
+                mmodificarRegistroClientes(archivoClientes);
+                getch();
+            }
+            break;
+        case 4:
+            {
+                system("cls");
+                mimprimirRegistroClientes(archivoClientes);
+                getch();
+            }
+            break;
+        case 5:
+            {
+                system("cls");
+                meliminarRegistroClientes(archivoClientes);
+            }
+            break;
+        case 6:
+            {
+                system("cls");
+                mbuscarClientes(archivoClientes);
+            break;
+        case 0:
+            break;
+        default:
+            cout<<"Opción invalida, intenta de nuevo";
+            getch();
+            break;
+        }
+    }while(iseleccionMenuClientes!=0);
+}
+
 ClsClientes::~ClsClientes()
 {
     //dtor
