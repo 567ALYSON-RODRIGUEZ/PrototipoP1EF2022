@@ -346,6 +346,35 @@ void ClsClientes::mimprimirRegistroClientes(fstream &archivoClientes)
    cout << "archivo creado con éxito con el nombre de: registroclientes";
 }
 
+void ClsClientes::meliminarRegistroClientes(fstream &archivoClientes)
+{
+    int iindicador= mobtenerIndicadorC( "Escriba la clave del cliente a eliminar" );
+
+   // desplazar el apuntador de posición de archivo hasta el registro correcto en el archivo
+   archivoClientes.seekg(
+      ( iindicador - 1 ) * sizeof( ClsClientes ) );
+
+   // leer el registro del archivo
+   ClsClientes clientes;
+   archivoClientes.read( reinterpret_cast< char * >( &clientes ),
+      sizeof( ClsClientes ) );
+
+   // eliminar el registro, si es que existe en el archivo
+   if ( clientes.mobtenerClaveC() != 0 ) {
+      ClsClientes clientesEnBlanco;
+
+      // desplazar el apuntador de posición de archivo hasta el registro correcto en el archivo
+      archivoClientes.seekp( ( iindicador - 1 ) *
+         sizeof( ClsClientes) );
+
+      // reemplazar el registro existente con un registro en blanco
+      archivoClientes.write(
+         reinterpret_cast< const char * >( &clientesEnBlanco ),
+         sizeof( ClsClientes) );
+
+      cout << "Cliente clave #" << iindicador << " eliminado correctamente.\n";
+   }
+}
 
 ClsClientes::~ClsClientes()
 {
