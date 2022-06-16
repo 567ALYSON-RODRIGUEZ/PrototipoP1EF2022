@@ -68,8 +68,6 @@ void listado(){
     fclose(arch);
 }
 
-
-
 void login(){
 
     //Bitacora
@@ -203,7 +201,7 @@ void login(){
         {
         case 1:
             {
-                /*accion = "Ingreso a Catalogos";
+                accion = "Ingreso a Catalogos";
                 ofstream bitacora("Bitacora.txt", ios::app | ios::out);
                 if (!bitacora)
                 {
@@ -218,8 +216,8 @@ void login(){
                 <<left<<setw(8)<< "Minuto:" <<left<<setw(5)<< fecha->tm_min <<left<<setw(9)<< "Segundo:" <<left<<setw(5)<< fecha->tm_sec << endl;
                 bitacora.close();
 
-                ClsmenuMantenimientos menuMantenimientos;
-                menuMantenimientos.mmenuMantimientos();*/
+                ClsmenuClientes clientes menuClientes;
+                menuClientes.mmenuClientes();
             }
             break;
         case 2:
