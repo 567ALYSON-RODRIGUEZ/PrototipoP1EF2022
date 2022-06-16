@@ -83,6 +83,23 @@ void ClsClientes::mestablecerResevaC( string scadenaResevaC )
    m_sReservaCliente[ ilongitud ] = '\0';
 }
 
+//Metodos atributos compra del cliente
+string ClsClientes::mobtenerCompraC() const
+{
+    return m_sCompraCliente;
+}
+
+void ClsClientes::mestablecerCompraC( string scadenaCompraC )
+{
+   // copiar a lo más 20 caracteres de la cadena
+   const char *svalorCompraC = scadenaCompraC.data();
+   int ilongitud = strlen( svalorCompraC );
+   ilongitud = ( ilongitud < 10 ? ilongitud : 9 );
+   strncpy( m_sCompraCliente, svalorCompraC, ilongitud );
+   // anexar caracter nulo al final de la cadena
+   m_sCompraCliente[ ilongitud ] = '\0';
+}
+
 ClsClientes::~ClsClientes()
 {
     //dtor
