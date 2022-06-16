@@ -32,6 +32,22 @@ void ClsClientes::mestablecerClaveCliente (int ienteroClaveC)
     m_iclaveCliente = ienteroClaveC;
 }
 
+//Metodos atributo nombre del cliente
+string ClsClientes::mobtenerNombreC() const
+{
+    return m_snombreCliente;
+}
+
+void ClsClientes::mestablecerNombreC( string scadenaNombreC )
+{
+   // copiar a lo más 20 caracteres de la cadena
+   const char *svalorNombreC = scadenaNombreC.data();
+   int ilongitud = strlen( svalorNombreC );
+   ilongitud = ( ilongitud < 10 ? ilongitud : 9 );
+   strncpy( m_snombreCliente, svalorNombreC, ilongitud );
+   // anexar caracter nulo al final de la cadena
+   m_snombreCliente[ ilongitud ] = '\0';
+}
 
 
 ClsClientes::~ClsClientes()
