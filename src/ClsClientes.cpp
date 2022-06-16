@@ -10,7 +10,7 @@
 
 using namespace std;
 
-ClsClientes::ClsClientes(int iclaveCliente, string snombreCliente, string sapellidoCliente, string sresevaCliente, string scompreCliente, string scorreoCliente);
+ClsClientes::ClsClientes(int iclaveCliente, string snombreCliente, string sapellidoCliente, string sreservaCliente, string scompraCliente, string scorreoCliente)
 {
     //ctor
     mestablecerClaveCliente(iclaveCliente);
@@ -24,7 +24,7 @@ ClsClientes::ClsClientes(int iclaveCliente, string snombreCliente, string sapell
 //Metodos del atributo clase clientes
 int ClsClientes::mobtenerClaveC() const
 {
-    return int m_iclaveCliente;
+    return m_iclaveCliente;
 }
 
 void ClsClientes::mestablecerClaveCliente (int ienteroClaveC)
@@ -72,10 +72,10 @@ string ClsClientes::mobtenerReservaC() const
     return m_sReservaCliente;
 }
 
-void ClsClientes::mestablecerResevaC( string scadenaResevaC )
+void ClsClientes::mestablecerReservaC( string scadenaReservaC )
 {
    // copiar a lo más 20 caracteres de la cadena
-   const char *svalorReservaC = scadenaResevaC.data();
+   const char *svalorReservaC = scadenaReservaC.data();
    int ilongitud = strlen( svalorReservaC );
    ilongitud = ( ilongitud < 10 ? ilongitud : 9 );
    strncpy( m_sReservaCliente, svalorReservaC, ilongitud );
@@ -110,7 +110,7 @@ void ClsClientes::mestablecerCorreoC( string scadenaCorreoC )
 {
    // copiar a lo más 20 caracteres de la cadena
    const char *svalorCorreoC = scadenaCorreoC.data();
-   int ilongitud = strlen( svalorCorreo );
+   int ilongitud = strlen( svalorCorreoC );
    ilongitud = ( ilongitud < 30 ? ilongitud : 29 );
    strncpy( m_sCorreoCliente, svalorCorreoC, ilongitud );
    // anexar caracter nulo al final de la cadena
@@ -129,7 +129,7 @@ ClsClientes::mcrearClientes()
     ClsClientes clienteEnBlanco;
     for(int i=0; i<100; i++)
     {
-        archivoClientes.write(reinterpret_cast<const char * > (&clinteEnBlanco), sizeof(ClsClientes));
+        archivoClientes.write(reinterpret_cast<const char * > (&clienteEnBlanco), sizeof(ClsClientes));
     }
 }
 
@@ -181,7 +181,7 @@ void ClsClientes::mnuevoCliente(fstream &archivoClientes)
       clientes.mestablecerClaveCliente( m_iclaveCliente );
       clientes.mestablecerNombreC( m_snombreCliente );
       clientes.mestablecerApellidoC(m_sapellidoCliente);
-      clientes.mestablecerResevaC(m_sReservaCliente);
+      clientes.mestablecerReservaC(m_sReservaCliente);
       clientes.mestablecerCompraC(m_sCompraCliente);
       clientes.mestablecerCorreoC(m_sCorreoCliente);
 
@@ -259,7 +259,7 @@ void ClsClientes::mmodificarRegistroClientes( fstream &archivoClientes)
 
    // leer el primer registro del archivo
    archivoClientes.read( reinterpret_cast< char * >( &clientes ),
-      sizeof( ClsEmpresa ) );
+      sizeof( ClsClientes) );
 
    // actualizar el registro
    if ( clientes.mobtenerClaveC() != 0 ) {
@@ -476,6 +476,7 @@ ClsClientes::mmenuClientes()
             {
                 system("cls");
                 mbuscarClientes(archivoClientes);
+            }
             break;
         case 0:
             break;

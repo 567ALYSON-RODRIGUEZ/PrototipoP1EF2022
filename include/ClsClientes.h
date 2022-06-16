@@ -39,13 +39,13 @@ class ClsClientes
         void mestablecerClaveCliente( int ) ;
         int mobtenerClaveC() const;
 
-        void mestablecerNombreC string );
+        void mestablecerNombreC (string );
         string mobtenerNombreC() const;
 
         void mestablecerApellidoC(string);
         string mobtenerApellidoC()const;
 
-        void mestablecerResevaC(string);
+        void mestablecerReservaC(string);
         string mobtenerReservaC()const;
 
         void mestablecerCompraC(string);
