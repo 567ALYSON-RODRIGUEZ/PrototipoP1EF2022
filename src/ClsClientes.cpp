@@ -238,6 +238,18 @@ void ClsClientes::mconsultarRegistroClientes(fstream &archivoClientes)
    }
 }
 
+void ClsClientes::mmostrarLineaRegistroClientes( ostream &salida, const ClsClientes &registro )
+{
+       salida << left << setw( 10 ) << registro.mobtenerClaveC()
+          << setw( 10 ) << registro.mobtenerNombreC().data()
+          << setw( 10 ) << registro.mobtenerApellidoC().data()
+          << setw( 10 ) << registro.mobtenerReservaC().data()
+          << setw( 20 ) << registro.mobtenerCompraC().data()
+          << setw( 20 ) << registro.mobtenerCorreoC().data()
+          << endl;
+}
+
+
 ClsClientes::~ClsClientes()
 {
     //dtor
