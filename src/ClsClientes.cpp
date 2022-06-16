@@ -249,6 +249,65 @@ void ClsClientes::mmostrarLineaRegistroClientes( ostream &salida, const ClsClien
           << endl;
 }
 
+void ClsClientes::mmodificarRegistroClientes( fstream &archivoClientes)
+{
+   ClsClientes clientes;
+   int m_iclaveCliente= mobtenerIndicadorC("Ingrese el nombre del cliente");
+
+   archivoClientes.seekg(
+      ( m_iclaveCliente - 1 ) * sizeof( ClsClientes ) );
+
+   // leer el primer registro del archivo
+   archivoClientes.read( reinterpret_cast< char * >( &clientes ),
+      sizeof( ClsEmpresa ) );
+
+   // actualizar el registro
+   if ( clientes.mobtenerClaveC() != 0 ) {
+      mmostrarLineaRegistroClientes( cout, clientes );
+
+      cout << "\nEscriba el nombre: ";
+      char m_snombreCliente [ 10 ];
+      cin >> m_snombreCliente;
+
+      cout << "Escriba el apellido del cliente:";
+      char m_sapellidoCliente [ 10 ];
+      cin >> m_sapellidoCliente;
+
+      cout << "Escriba el tipo de reserva del cliente (Activo/Desactivo):";
+      char m_sReservaCliente [ 10 ];
+      cin >> m_sReservaCliente;
+
+      cout << "Escriba el nombre de la compra del cliente:";
+      char m_sCompraCliente [ 20 ];
+      cin >> m_sCompraCliente;
+
+      cout << "Escriba el correo del cliente:";
+      char m_sCorreoCliente [ 20 ];
+      cin >> m_sCorreoCliente;
+
+      // actualizar el saldo del registro
+      clientes.mestablecerNombreC( m_snombreCliente );
+      mmostrarLineaRegistroClientes( cout, clientes );
+
+      // desplazar el apuntador de posición de archivo hasta el registro correcto en el archivo
+      archivoClientes.seekp(
+         ( m_iclaveCliente - 1 ) * sizeof( ClsClientes ) );
+
+      // escribir el registro actualizado sobre el registro anterior en el archivo
+      archivoClientes.write(
+         reinterpret_cast< const char * >( &clientes ),
+         sizeof( ClsClientes ) );
+
+        cout << "Cliente modificado con éxito.";
+
+   } // fin de instrucción if
+
+   // mostrar error si la cuenta no existe
+   else
+      cerr << "La clave #" << m_iclaveCliente
+         << " no tiene informacion." << endl;
+}
+
 
 ClsClientes::~ClsClientes()
 {
