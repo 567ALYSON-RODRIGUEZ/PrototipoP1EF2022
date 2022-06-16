@@ -308,6 +308,44 @@ void ClsClientes::mmodificarRegistroClientes( fstream &archivoClientes)
          << " no tiene informacion." << endl;
 }
 
+void ClsClientes::mimprimirRegistroClientes(fstream &archivoClientes)
+{
+    ClsClientes clientes;
+    ofstream imprimir("registrodeclientes.txt", ios::out);
+
+   // salir del programa si ofstream no puede crear el archivo
+   if ( !imprimir ) {
+      cerr << "No se pudo crear el archivo." << endl;
+      exit( 1 );
+
+   } // fin de instrucción if
+
+   imprimir << left << setw( 10 ) << "Clave" << setw( 10 )
+       << "Nombre: " << setw( 10 ) << "Apellido"<<setw( 10 )<<
+       "Reserva"<<setw( 20 )<< "Compra"<<setw( 20 )<< "Correo"<< endl;
+
+   // colocar el apuntador de posición de archivo al principio del archivo de registros
+   archivoClientes.seekg( 0 );
+
+   // leer el primer registro del archivo de registros
+   archivoClientes.read( reinterpret_cast< char * >( &clientes),
+      sizeof( ClsClientes ) );
+
+   // copiar todos los registros del archivo de registros en el archivo de texto
+   while ( !archivoClientes.eof() ) {
+
+      // escribir un registro individual en el archivo de texto
+      if ( clientes.mobtenerClaveC() != 0 )
+         mmostrarLineaRegistroClientes( imprimir, clientes );
+
+      // leer siguiente registro del archivo de registros
+      archivoClientes.read( reinterpret_cast< char * >( &clientes ),
+         sizeof( ClsClientes ) );
+
+   }
+   cout << "archivo creado con éxito con el nombre de: registroclientes";
+}
+
 
 ClsClientes::~ClsClientes()
 {
