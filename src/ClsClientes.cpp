@@ -210,6 +210,33 @@ void ClsClientes::mostrarLineaClientes( const ClsClientes &registro )
           << endl;
 }
 
+void ClsClientes::mconsultarRegistroClientes(fstream &archivoClientes)
+{
+   cout << left << setw( 10 ) << "Clave" << setw( 10 )
+       << "Nombre" << setw( 10 ) << "Apellido"<<setw( 10 )<<
+       "Reserva"<<setw( 20 )<< "Compra"<<setw( 20 )<< "Correo"<<endl;
+
+   // colocar el apuntador de posición de archivo al principio del archivo de registros
+   archivoClientes.seekg( 0 );
+
+   // leer el primer registro del archivo de registros
+   ClsClientes clientes;
+   archivoClientes.read( reinterpret_cast< char * >( &clientes ),
+      sizeof( ClsClientes ) );
+
+   // copiar todos los registros del archivo de registros en el archivo de texto
+   while ( !archivoClientes.eof() ) {
+
+      // escribir un registro individual en el archivo de texto
+      if ( clientes.mobtenerClaveC() != 0 )
+         mostrarLineaClientes(clientes);
+
+      // leer siguiente registro del archivo de registros
+      archivoClientes.read( reinterpret_cast< char * >( &clientes ),
+         sizeof( ClsClientes ) );
+
+   }
+}
 
 ClsClientes::~ClsClientes()
 {
