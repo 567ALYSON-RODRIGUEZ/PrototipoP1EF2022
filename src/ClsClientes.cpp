@@ -49,6 +49,23 @@ void ClsClientes::mestablecerNombreC( string scadenaNombreC )
    m_snombreCliente[ ilongitud ] = '\0';
 }
 
+//Metodos atributo apellido del cliente
+string ClsClientes::mobtenerApellidoC() const
+{
+    return m_sapellidoCliente;
+}
+
+void ClsClientes::mestablecerApellidoC( string scadenaApellidoC )
+{
+   // copiar a lo más 20 caracteres de la cadena
+   const char *svalorApellidoC = scadenaApellidoC.data();
+   int ilongitud = strlen( svalorApellidoC );
+   ilongitud = ( ilongitud < 10 ? ilongitud : 9 );
+   strncpy( m_sapellidoCliente, svalorApellidoC, ilongitud );
+   // anexar caracter nulo al final de la cadena
+   m_sapellidoCliente[ ilongitud ] = '\0';
+}
+
 
 ClsClientes::~ClsClientes()
 {
