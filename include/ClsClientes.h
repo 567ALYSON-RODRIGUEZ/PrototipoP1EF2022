@@ -13,7 +13,7 @@ using namespace std;
 class ClsClientes
 {
     public:
-        ClsClientes(int = 0 , string = " ", string = " ", string = " ", string = " ", string = " ", string = " " );
+        ClsClientes(int = 0 , string = " ", string = " ", string = " ", string = " ", string = " " );
 
         mmenuClientes();
         mcrearClientes();
@@ -39,14 +39,11 @@ class ClsClientes
         void mestablecerClaveCliente( int ) ;
         int mobtenerClaveC() const;
 
-        void mestablecerNombreCliente string );
+        void mestablecerNombreC string );
         string mobtenerNombreC() const;
 
         void mestablecerApellidoC(string);
         string mobtenerApellidoC()const;
-
-        void mestablecerTelefonoC(string);
-        string mobtenerTelefonoC()const;
 
         void mestablecerResevaC(string);
         string mobtenerReservaC()const;
@@ -65,7 +62,6 @@ class ClsClientes
         int m_iclaveCliente;
         char m_snombreCliente[10];
         char m_sapellidoCliente[ 10 ];
-        char m_sTelefonoCliente[9];
         char m_sReservaCliente[10];
         char m_sCompraCliente[20];
         char m_sCorreoCliente[20];
