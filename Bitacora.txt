@@ -1,0 +1,4 @@
+Usuario: Alyson    Accion: Ingreso al sistema            Dia: 16   Mes: 6    Año: 2022  Hora: 16   Minuto: 0    Segundo: 27   
+Usuario: Alyson    Accion: Ingreso a Mantenimiento       Dia: 16   Mes: 6    Año: 2022  Hora: 16   Minuto: 0    Segundo: 27   
+Usuario: Alyson    Accion: Ingreso al sistema            Dia: 16   Mes: 6    Año: 2022  Hora: 16   Minuto: 0    Segundo: 53   
+Usuario: Alyson    Accion: Ingreso a Mantenimiento       Dia: 16   Mes: 6    Año: 2022  Hora: 16   Minuto: 0    Segundo: 53   
