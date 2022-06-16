@@ -147,6 +147,57 @@ int ClsClientes::mobtenerIndicadorC(const char * const iindicador)
    return m_iclaveCliente;
 }
 
+void ClsClientes::mnuevoCliente(fstream &archivoClientes)
+{
+   ClsClientes clientes;
+   int m_iclaveCliente = mobtenerIndicadorC( "Escriba el numero de cliente" );
+
+   // desplazar el apuntador de posición del archivo hasta el registro correcto en el archivo
+   archivoClientes.seekg(
+      ( m_iclaveCliente - 1 ) * sizeof( ClsClientes ) );
+
+   // leer el registro del archivo
+   archivoClientes.read( reinterpret_cast< char * >( &clientes ),
+      sizeof( ClsClientes ) );
+
+    // crear el registro, si éste no existe ya
+   if ( clientes.mobtenerClaveC() == 0 ) {
+
+      char m_snombreCliente[ 10 ];
+
+      // el usuario introduce el nombre
+      cout << "Escriba el nombre del cliente: " << endl;
+      cin >> setw( 10 ) >> m_snombreCliente;
+      cout << "Escriba el apellido del cliente:" << endl;
+      cin >> setw( 10 ) >> m_sapellidoCliente ;
+      cout << "Escriba el tipo de reserva del cliente (Activo/Desactivo):" << endl;
+      cin >> setw( 10 ) >>m_sReservaCliente;
+      cout << "Escriba el nombre de la compra del cliente:" << endl;
+      cin >> setw( 20 ) >>m_sCompraCliente;
+      cout << "Escriba el correo electronico del cliente:" << endl;
+      cin >> setw( 20 ) >> m_sCorreoCliente;
+
+      // usar valores para llenar los valores de la clave
+      clientes.mestablecerClaveCliente( m_iclaveCliente );
+      clientes.mestablecerNombreC( m_snombreCliente );
+      clientes.mestablecerApellidoC(m_sapellidoCliente);
+      clientes.mestablecerResevaC(m_sReservaCliente);
+      clientes.mestablecerCompraC(m_sCompraCliente);
+      clientes.mestablecerCorreoC(m_sCorreoCliente);
+
+      // desplazar el apuntador de posición de archivo hasta el registro correcto en el archivo
+      archivoClientes.seekp( ( m_iclaveCliente - 1 ) *
+         sizeof( ClsClientes ) );
+
+      // insertar el registro en el archivo
+      archivoClientes.write(
+         reinterpret_cast< const char * >( &clientes ),
+         sizeof( ClsClientes ) );
+
+        cout << "Cliente agregada con exito.";
+
+   }
+}
 
 
 
