@@ -66,6 +66,22 @@ void ClsClientes::mestablecerApellidoC( string scadenaApellidoC )
    m_sapellidoCliente[ ilongitud ] = '\0';
 }
 
+//Metodos atributos reserva del cliente
+string ClsClientes::mobtenerReservaC() const
+{
+    return m_sReservaCliente;
+}
+
+void ClsClientes::mestablecerResevaC( string scadenaResevaC )
+{
+   // copiar a lo más 20 caracteres de la cadena
+   const char *svalorReservaC = scadenaResevaC.data();
+   int ilongitud = strlen( svalorReservaC );
+   ilongitud = ( ilongitud < 10 ? ilongitud : 9 );
+   strncpy( m_sReservaCliente, svalorReservaC, ilongitud );
+   // anexar caracter nulo al final de la cadena
+   m_sReservaCliente[ ilongitud ] = '\0';
+}
 
 ClsClientes::~ClsClientes()
 {
