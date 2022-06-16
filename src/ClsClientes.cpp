@@ -100,6 +100,23 @@ void ClsClientes::mestablecerCompraC( string scadenaCompraC )
    m_sCompraCliente[ ilongitud ] = '\0';
 }
 
+//Metodos atributo correo del cliente
+string ClsClientes::mobtenerCorreoC() const
+{
+    return m_sCorreoCliente;
+}
+
+void ClsClientes::mestablecerCorreoC( string scadenaCorreoC )
+{
+   // copiar a lo más 20 caracteres de la cadena
+   const char *svalorCorreoC = scadenaCorreoC.data();
+   int ilongitud = strlen( svalorCorreo );
+   ilongitud = ( ilongitud < 30 ? ilongitud : 29 );
+   strncpy( m_sCorreoCliente, svalorCorreoC, ilongitud );
+   // anexar caracter nulo al final de la cadena
+   m_sCorreoCliente[ ilongitud ] = '\0';
+}
+
 ClsClientes::~ClsClientes()
 {
     //dtor
