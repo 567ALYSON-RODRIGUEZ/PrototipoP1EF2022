@@ -1,0 +1,2 @@
+Usuario: Alyson    Accion: Ingreso al sistema            Dia: 16   Mes: 6    Año: 2022  Hora: 12   Minuto: 23   Segundo: 4    
+Usuario: Alyson    Accion: Salio del Menu Principal      Dia: 16   Mes: 6    Año: 2022  Hora: 12   Minuto: 23   Segundo: 4    
